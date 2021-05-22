@@ -10505,7 +10505,9 @@ string CompilerMSL::to_struct_member(const SPIRType &type, uint32_t member_type_
 
 	auto result = join(pack_pfx, type_to_glsl(*declared_type, orig_id), " ", qualifier, to_member_name(type, index),
 	                   member_attribute_qualifier(type, index), array_type, ";");
-
+    if (to_member_name(type, index) == "gl_Position_1") {
+        return "";
+    }
 	is_using_builtin_array = false;
 	return result;
 }
